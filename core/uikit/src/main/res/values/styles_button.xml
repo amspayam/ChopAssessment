@@ -32,8 +32,9 @@
     </style>
 
     <style name="Widget.AppComponents.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">@color/textWhite</item>
-        <item name="android:textSize">@dimen/footnote</item>
+        <item name="android:textColor">@color/textDarkBlue</item>
+        <item name="android:textSize">@dimen/label</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
         <item name="android:clickable">false</item>

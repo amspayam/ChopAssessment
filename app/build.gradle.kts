@@ -14,6 +14,7 @@ dependencies {
     // Features
     implementation(project(":main"))
     implementation(project(":friends"))
+    implementation(project(":conversation"))
 
     // Kotlin stdlib
     implementation(Libraries.kotlin_stdlib)

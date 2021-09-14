@@ -5,4 +5,5 @@
     <dimen name="radius_s">4dp</dimen>
     <dimen name="radius_m">8dp</dimen>
     <dimen name="radius_l">16dp</dimen>
+    <dimen name="radius_xl">32dp</dimen>
 </resources>

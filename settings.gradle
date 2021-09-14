@@ -10,3 +10,4 @@ include ':core:navigation'
 /*Feature*/
 include ':main'
 include ':friends'
+include ':conversation'

@@ -10,7 +10,7 @@ import com.combyne.uikit.base.adapter.BaseViewHolder
 import com.combyne.uikit.extension.permitive.inflate
 
 
-class FriendListAdapter(val onclickListener: (transitionId: String) -> Unit) :
+class FriendListAdapter(val onclickListener: (friendId: String, friendName: String) -> Unit) :
     BaseRecyclerAdapter() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> {

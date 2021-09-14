@@ -4,7 +4,7 @@ import co.chop.friends.databinding.ItemFriendListBinding
 import com.combyne.uikit.base.adapter.BaseViewHolder
 
 class FriendListViewHolder(
-    val onclickListener: (transitionId: String) -> Unit,
+    val onclickListener: (friendId: String, friendName: String) -> Unit,
     val binding: ItemFriendListBinding
 ) :
     BaseViewHolder<FriendListModel>(binding.root) {
@@ -13,7 +13,7 @@ class FriendListViewHolder(
         binding.friendNameTextView.text = data.name
         binding.friendMessageTextView.text = data.message
         binding.root.setOnClickListener {
-            onclickListener.invoke(data.id)
+            onclickListener.invoke(data.id, data.name)
         }
     }
 }

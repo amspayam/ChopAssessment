@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.chop.friends.databinding.FragmentFriendListBinding
@@ -22,8 +23,8 @@ class FriendListFragment : BaseFragment<FriendListViewModel>() {
     override val viewModel: FriendListViewModel by viewModel()
     private lateinit var binding: FragmentFriendListBinding
     private val friendListAdapter by lazy {
-        FriendListAdapter(onclickListener = { friendId ->
-            //TODO navigate to detail
+        FriendListAdapter(onclickListener = { friendId, friendName ->
+            navigateToFriendDetailFragment(friendId, friendName)
         })
     }
 
@@ -71,6 +72,15 @@ class FriendListFragment : BaseFragment<FriendListViewModel>() {
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.friendsRecyclerView.addItemDecoration(FriendListDecoration(requireContext()))
         binding.friendsRecyclerView.adapter = friendListAdapter
+    }
+
+    private fun navigateToFriendDetailFragment(friendId: String, friendName: String) {
+        val action =
+            FriendListFragmentDirections.actionFriendsFragmentToConversationFragment(
+                friendId,
+                friendName
+            )
+        findNavController().navigate(action)
     }
 
 }

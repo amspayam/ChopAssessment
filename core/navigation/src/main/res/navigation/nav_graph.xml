@@ -10,6 +10,22 @@
         android:name="co.chop.friends.list.presenter.FriendListFragment"
         android:label="@string/friends"
         tools:layout="@layout/fragment_friend_list">
+        <action
+            android:id="@+id/action_friendsFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/conversationFragment"
+        android:name="co.chop.conversation.presenter.ConversationFragment"
+        android:label="@string/conversation"
+        tools:layout="@layout/fragment_conversation">
+        <argument
+            android:name="friendId"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -1,6 +1,7 @@
 package co.chop.assessment.application
 
 import androidx.multidex.MultiDexApplication
+import co.chop.conversation.di.ConversationInjector
 import co.chop.friends.list.di.FriendListInjector
 import com.combyne.cache.di.CachemanagerInjector
 import com.combyne.main.mainactivity.di.MainActivityInjector
@@ -28,6 +29,8 @@ class ApplicationGlobal : MultiDexApplication() {
                 .modules(MainActivityInjector.provideDependencies())
                 /*Friends*/
                 .modules(FriendListInjector.provideDependencies())
+                /*Conversation*/
+                .modules(ConversationInjector.provideDependencies())
         }
     }
 
