@@ -1,0 +1,12 @@
+rootProject.name = "ChopAssessment"
+
+include 'app'
+include ':core:base'
+include ':core:uikit'
+include ':core:repository'
+include ':core:cachemanager'
+include ':core:navigation'
+
+/*Feature*/
+include ':main'
+include ':friends'
