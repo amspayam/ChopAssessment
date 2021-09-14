@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/colorPrimaryDark">
+    android:layout_gravity="center">
 
     <TextView
         android:id="@+id/titleTextview"
@@ -12,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
-        android:textColor="@color/textWhite"
+        android:textColor="@color/textPrimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
