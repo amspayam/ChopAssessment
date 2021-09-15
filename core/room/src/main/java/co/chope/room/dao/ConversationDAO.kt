@@ -5,14 +5,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import co.chope.room.entity.conversation.ConversationEntity
+import co.chope.room.entity.conversation.ConversationTypeEnum
 
 @Dao
 interface ConversationDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(conversation: ConversationEntity)
+    suspend fun insertConversations(conversation: List<ConversationEntity>)
 
-    @Query("SELECT id,userId,message,type FROM conversations WHERE userId =:idUser")
+    @Query("SELECT * FROM conversations WHERE userId =:idUser")
     suspend fun getAll(idUser: Int): List<ConversationEntity>
 
 }

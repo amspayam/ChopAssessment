@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import co.chope.room.entity.friend.FriendDAO
+import co.chope.room.dao.FriendDAO
 import co.chope.room.entity.friend.FriendEntity
 import com.combyne.core.extension.GsonUtils.toListByGson
 import kotlinx.coroutines.CoroutineScope

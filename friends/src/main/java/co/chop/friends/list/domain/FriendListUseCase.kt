@@ -14,7 +14,8 @@ class FriendListUseCase(
             it.map { response ->
                 FriendModel(
                     id = response.id ?: 0,
-                    name = response.username
+                    name = response.username,
+                    lastMessage = response.lastMessage ?: ""
                 )
             }
         }

@@ -8,10 +8,11 @@ import androidx.room.PrimaryKey
     tableName = "friend"
 )
 data class FriendEntity(
-    @ColumnInfo(name = "username")
-    var username: String
-) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Int? = null
-}
+    var id: Int? = null,
+    @ColumnInfo(name = "username")
+    var username: String,
+    @ColumnInfo(name = "lastMessage")
+    var lastMessage: String?
+)

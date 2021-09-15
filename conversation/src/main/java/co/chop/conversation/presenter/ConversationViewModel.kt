@@ -80,6 +80,7 @@ class ConversationViewModel(
                     type = ConversationTypeEnum.SENT
                 )
             ).executeUseCase({
+                getConversation(friendId = it)
                 sendMessageLiveData.value = ViewState.ViewData(true)
             }, {
                 sendMessageLiveData.value = ViewState.ViewError(it)

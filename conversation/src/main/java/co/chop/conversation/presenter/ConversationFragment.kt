@@ -1,9 +1,12 @@
 package co.chop.conversation.presenter
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +22,8 @@ import com.combyne.uikit.base.viewmodel.MessageMaster
 import com.combyne.uikit.base.viewmodel.MessageTypeEnum
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ConversationFragment : BaseFragment<ConversationViewModel>() {
+class ConversationFragment : BaseFragment<ConversationViewModel>(),
+    TextView.OnEditorActionListener {
 
     override val viewModel: ConversationViewModel by viewModel()
     private lateinit var binding: FragmentConversationBinding
@@ -47,13 +51,13 @@ class ConversationFragment : BaseFragment<ConversationViewModel>() {
         // <editor-fold desc="Observe Conversation">
         viewModel.conversationViewStateLiveData.observe(viewLifecycleOwner) {
             it.onViewError { messages, status ->
-                    showMessage(
-                        MessageMaster(
-                            type = MessageTypeEnum.SNACK_BAR,
-                            message = "$status $messages"
-                        )
+                showMessage(
+                    MessageMaster(
+                        type = MessageTypeEnum.SNACK_BAR,
+                        message = "$status $messages"
                     )
-                }
+                )
+            }
         }
         // </editor-fold>
 
@@ -86,6 +90,7 @@ class ConversationFragment : BaseFragment<ConversationViewModel>() {
     override fun setupListener() {
         super.setupListener()
         onClickListeners(binding.sendButton)
+        binding.messageEditText.setOnEditorActionListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -110,6 +115,14 @@ class ConversationFragment : BaseFragment<ConversationViewModel>() {
                 )
             }
         }
+    }
+
+    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
+            viewModel.sendMessage(message = binding.messageEditText.text)
+            return true
+        }
+        return false
     }
 
 

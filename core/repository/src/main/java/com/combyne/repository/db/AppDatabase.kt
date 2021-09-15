@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import co.chope.room.dao.ConversationDAO
 import co.chope.room.entity.conversation.ConversationEntity
 import co.chope.room.entity.conversation.ConversationTypeConverter
-import co.chope.room.entity.friend.FriendDAO
+import co.chope.room.dao.FriendDAO
 import co.chope.room.entity.friend.FriendEntity
 
 @Database(entities = [FriendEntity::class, ConversationEntity::class], version = 1)

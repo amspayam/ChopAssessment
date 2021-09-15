@@ -1,6 +1,7 @@
 package co.chop.friends.list.presenter
 
 import androidx.lifecycle.MutableLiveData
+import co.chop.conversation.domain.ConversationUseCase
 import co.chop.friends.list.domain.FriendListUseCase
 import co.chop.friends.list.domain.FriendModel
 import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListModel
@@ -9,7 +10,9 @@ import com.combyne.repository.executeUseCase
 import com.combyne.uikit.base.viewmodel.BaseViewModel
 import com.combyne.uikit.extension.mutablelivedata.notifyObserver
 
-class FriendListViewModel(private val friendListUseCase: FriendListUseCase) : BaseViewModel() {
+class FriendListViewModel(
+    private val friendListUseCase: FriendListUseCase
+) : BaseViewModel() {
 
     val friendListViewStateLiveData = MutableLiveData<ViewState<List<FriendModel>>>()
     val friendListItemsLiveData = MutableLiveData<MutableList<Any>>(mutableListOf())
@@ -37,7 +40,7 @@ class FriendListViewModel(private val friendListUseCase: FriendListUseCase) : Ba
             FriendListModel(
                 id = it.id,
                 name = it.name,
-                message = ""
+                message = it.lastMessage
             )
         })
         friendListItemsLiveData.notifyObserver()

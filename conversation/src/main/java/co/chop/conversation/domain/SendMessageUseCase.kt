@@ -8,9 +8,9 @@ import com.combyne.repository.map
 
 class SendMessageUseCase(
     private val repository: ConversationRepository
-) : AsyncSuspendUseCase<ConversationModel, ResultModel<Boolean>> {
+) : AsyncSuspendUseCase<ConversationModel, ResultModel<Int>> {
 
-    override suspend fun executeAsync(rq: ConversationModel): ResultModel<Boolean> {
+    override suspend fun executeAsync(rq: ConversationModel): ResultModel<Int> {
         return repository.addConversation(conversation = rq).map {
             it
         }
