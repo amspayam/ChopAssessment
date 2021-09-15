@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.chop.assessment.base.view.onViewData
+import co.chop.assessment.base.view.onViewError
+import co.chop.assessment.base.view.onViewLoading
 import co.chop.friends.databinding.FragmentFriendListBinding
 import co.chop.friends.list.presenter.adapter.FriendListAdapter
 import co.chop.friends.list.presenter.adapter.FriendListDecoration
-import com.combyne.core.view.onViewData
-import com.combyne.core.view.onViewError
-import com.combyne.core.view.onViewLoading
 import com.combyne.uikit.base.BaseFragment
 import com.combyne.uikit.base.viewmodel.MessageMaster
 import com.combyne.uikit.base.viewmodel.MessageTypeEnum

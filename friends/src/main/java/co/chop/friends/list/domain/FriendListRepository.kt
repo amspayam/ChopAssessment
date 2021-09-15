@@ -1,7 +1,7 @@
 package co.chop.friends.list.domain
 
-import co.chope.room.entity.friend.FriendEntity
-import com.combyne.repository.ResultModel
+import co.chop.assessment.repository.ResultModel
+import co.chop.assessment.room.entity.friend.FriendEntity
 
 interface FriendListRepository {
     suspend fun getFriendList(): ResultModel<List<FriendEntity>>

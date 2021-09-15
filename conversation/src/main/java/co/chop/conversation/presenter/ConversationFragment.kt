@@ -10,13 +10,13 @@ import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.chop.assessment.base.view.onViewData
+import co.chop.assessment.base.view.onViewError
+import co.chop.assessment.base.view.onViewLoading
 import co.chop.conversation.R
 import co.chop.conversation.databinding.FragmentConversationBinding
 import co.chop.conversation.presenter.adapter.ConversationAdapter
 import co.chop.conversation.presenter.adapter.ConversationDecoration
-import com.combyne.core.view.onViewData
-import com.combyne.core.view.onViewError
-import com.combyne.core.view.onViewLoading
 import com.combyne.uikit.base.BaseFragment
 import com.combyne.uikit.base.viewmodel.MessageMaster
 import com.combyne.uikit.base.viewmodel.MessageTypeEnum

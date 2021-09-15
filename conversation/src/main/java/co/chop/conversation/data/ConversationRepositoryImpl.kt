@@ -1,12 +1,12 @@
 package co.chop.conversation.data
 
+import co.chop.assessment.repository.ResultModel
+import co.chop.assessment.repository.db.AppDatabase
+import co.chop.assessment.room.entity.conversation.ConversationEntity
+import co.chop.assessment.room.entity.conversation.ConversationTypeEnum
+import co.chop.assessment.room.entity.friend.FriendUpdate
 import co.chop.conversation.domain.ConversationRepository
 import co.chop.conversation.domain.model.ConversationModel
-import co.chope.room.entity.conversation.ConversationEntity
-import co.chope.room.entity.conversation.ConversationTypeEnum
-import co.chope.room.entity.friend.FriendUpdate
-import com.combyne.repository.ResultModel
-import com.combyne.repository.db.AppDatabase
 
 class ConversationRepositoryImpl(private val appDatabase: AppDatabase) :
     ConversationRepository {

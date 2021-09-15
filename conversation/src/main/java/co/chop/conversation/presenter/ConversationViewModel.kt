@@ -1,15 +1,15 @@
 package co.chop.conversation.presenter
 
 import androidx.lifecycle.MutableLiveData
+import co.chop.assessment.base.view.ViewState
+import co.chop.assessment.repository.executeUseCase
+import co.chop.assessment.room.entity.conversation.ConversationTypeEnum
 import co.chop.conversation.R
 import co.chop.conversation.domain.ConversationUseCase
 import co.chop.conversation.domain.SendMessageUseCase
 import co.chop.conversation.domain.model.ConversationModel
 import co.chop.conversation.presenter.adapter.viewholder.received.ConversationReceivedModel
 import co.chop.conversation.presenter.adapter.viewholder.sent.ConversationSentModel
-import co.chope.room.entity.conversation.ConversationTypeEnum
-import com.combyne.core.view.ViewState
-import com.combyne.repository.executeUseCase
 import com.combyne.uikit.base.viewmodel.BaseViewModel
 import com.combyne.uikit.base.viewmodel.MessageMaster
 import com.combyne.uikit.base.viewmodel.MessageTypeEnum

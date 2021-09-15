@@ -1,5 +1,5 @@
 plugins {
-    id("combyne-library-plugin")
+    id("chop-library-plugin")
 }
 
 dependencies {

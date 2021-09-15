@@ -1,9 +1,9 @@
 package co.chop.conversation.domain
 
+import co.chop.assessment.base.usecase.AsyncSuspendUseCase
+import co.chop.assessment.repository.ResultModel
+import co.chop.assessment.repository.map
 import co.chop.conversation.domain.model.ConversationModel
-import com.combyne.core.usecase.AsyncSuspendUseCase
-import com.combyne.repository.ResultModel
-import com.combyne.repository.map
 
 
 class ConversationUseCase(

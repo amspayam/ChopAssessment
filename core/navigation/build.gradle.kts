@@ -1,6 +1,5 @@
 plugins {
-    id("combyne-library-plugin")
-    id("kotlin-android")
+    id("chop-library-plugin")
 }
 
 dependencies {

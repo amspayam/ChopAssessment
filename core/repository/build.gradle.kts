@@ -1,5 +1,5 @@
 plugins {
-    id("combyne-library-plugin")
+    id("chop-library-plugin")
 }
 
 dependencies {
@@ -7,7 +7,6 @@ dependencies {
     // Modules
     implementation(project(":core:base"))
     implementation(project(":core:room"))
-    implementation(project(":core:cachemanager"))
 
     koinDG()
     rxDG()

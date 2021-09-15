@@ -1,8 +1,8 @@
 package co.chop.friends.list.domain
 
-import com.combyne.core.usecase.AsyncSuspendUseCase
-import com.combyne.repository.ResultModel
-import com.combyne.repository.map
+import co.chop.assessment.base.usecase.AsyncSuspendUseCase
+import co.chop.assessment.repository.ResultModel
+import co.chop.assessment.repository.map
 
 
 class FriendListUseCase(

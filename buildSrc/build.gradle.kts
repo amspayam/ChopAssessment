@@ -9,15 +9,15 @@ gradlePlugin {
     plugins {
 
         // Application Plugin
-        register("combyne-application-plugin") {
-            id = "combyne-application-plugin"
-            implementationClass = "com.combyne.plugins.CombyneApplicationPlugin"
+        register("chop-application-plugin") {
+            id = "chop-application-plugin"
+            implementationClass = "co.chop.assessment.plugins.ChopApplicationPlugin"
         }
 
         // Library Plugin
-        register("combyne-library-plugin") {
-            id = "combyne-library-plugin"
-            implementationClass = "com.combyne.plugins.CombyneLibraryPlugin"
+        register("chop-library-plugin") {
+            id = "chop-library-plugin"
+            implementationClass = "co.chop.assessment.plugins.ChopLibraryPlugin"
         }
     }
 }
