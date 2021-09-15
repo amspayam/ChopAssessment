@@ -8,10 +8,10 @@ class FriendListRepositoryImpl : FriendListRepository {
     override suspend fun getFriendList(): ResultModel<MutableList<FriendListDataModel>> {
         val list = mutableListOf<FriendListDataModel>()
         list.add(
-            FriendListDataModel(id = "1", name = "Jone", lastMessage = "How are you?")
+            FriendListDataModel(id = 1, name = "Jone", lastMessage = "How are you?")
         )
         list.add(
-            FriendListDataModel(id = "2", name = "Kent", lastMessage = "Hello")
+            FriendListDataModel(id = 2, name = "Kent", lastMessage = "Hello")
         )
         return ResultModel.Success(list)
     }

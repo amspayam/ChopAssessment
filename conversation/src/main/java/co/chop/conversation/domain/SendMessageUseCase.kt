@@ -6,12 +6,12 @@ import com.combyne.repository.ResultModel
 import com.combyne.repository.map
 
 
-class ConversationUseCase(
+class SendMessageUseCase(
     private val repository: ConversationRepository
-) : AsyncSuspendUseCase<Int, ResultModel<List<ConversationDataModel>>> {
+) : AsyncSuspendUseCase<ConversationDataModel, ResultModel<List<ConversationDataModel>>> {
 
-    override suspend fun executeAsync(rq: Int): ResultModel<List<ConversationDataModel>> {
-        return repository.getConversation(userId = rq).map {
+    override suspend fun executeAsync(rq: ConversationDataModel): ResultModel<List<ConversationDataModel>> {
+        return repository.sendMessage(message = rq).map {
             it
         }
     }

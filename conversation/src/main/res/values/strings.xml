@@ -2,4 +2,5 @@
 <resources>
     <string name="type_a_message">Type a message</string>
     <string name="send">Send</string>
+    <string name="field_required">You should fill this field</string>
 </resources>

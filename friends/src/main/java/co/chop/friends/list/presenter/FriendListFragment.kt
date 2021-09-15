@@ -74,7 +74,7 @@ class FriendListFragment : BaseFragment<FriendListViewModel>() {
         binding.friendsRecyclerView.adapter = friendListAdapter
     }
 
-    private fun navigateToFriendDetailFragment(friendId: String, friendName: String) {
+    private fun navigateToFriendDetailFragment(friendId: Int, friendName: String) {
         val action =
             FriendListFragmentDirections.actionFriendsFragmentToConversationFragment(
                 friendId,

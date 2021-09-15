@@ -1,18 +1,36 @@
 package co.chop.conversation.data
 
-import co.chop.conversation.domain.ConversationDataModel
+import co.chop.conversation.domain.model.ConversationDataModel
 import co.chop.conversation.domain.ConversationRepository
+import co.chop.conversation.domain.model.ConversationEnum
 import com.combyne.repository.ResultModel
 
 class ConversationRepositoryImpl : ConversationRepository {
-    override suspend fun getFriendList(): ResultModel<MutableList<ConversationDataModel>> {
-        val list = mutableListOf<ConversationDataModel>()
-        list.add(
-            ConversationDataModel(id = "1", name = "Jone", lastMessage = "How are you?")
+
+    private val list = mutableListOf(
+        ConversationDataModel(
+            userId = 1,
+            message = "How Are You?",
+            type = ConversationEnum.SENT
+        ), ConversationDataModel(
+            userId = 1,
+            message = "Good",
+            type = ConversationEnum.RECEIVED
+        ), ConversationDataModel(
+            userId = 2,
+            message = "Hello",
+            type = ConversationEnum.SENT
         )
-        list.add(
-            ConversationDataModel(id = "2", name = "Kent", lastMessage = "Hello")
-        )
-        return ResultModel.Success(list)
+    )
+
+    override suspend fun getConversation(userId: Int): ResultModel<List<ConversationDataModel>> {
+        val filteredList = list.filter { it.userId == userId }
+        return ResultModel.Success(filteredList)
+    }
+
+    override suspend fun sendMessage(message: ConversationDataModel): ResultModel<List<ConversationDataModel>> {
+        list.add(message)
+        val filteredList = list.filter { it.userId == message.userId }
+        return ResultModel.Success(filteredList)
     }
 }

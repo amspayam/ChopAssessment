@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_conversation">
         <argument
             android:name="friendId"
-            app:argType="string" />
+            app:argType="integer" />
         <argument
             android:name="name"
             app:argType="string" />
