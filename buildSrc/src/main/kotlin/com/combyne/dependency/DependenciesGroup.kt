@@ -82,6 +82,13 @@ fun DependencyHandlerScope.chuckDG() {
     "releaseImplementation"(Libraries.chuckRelease)
 }
 
+fun DependencyHandlerScope.roomDG() {
+    group(
+        Libraries.room_runtime,
+        Libraries.room_ktx
+    )
+    "kapt"(Libraries.room_compiler)
+}
 
 fun DependencyHandlerScope.baseModuleDG() {
     /*Ktx*/
@@ -95,6 +102,7 @@ fun DependencyHandlerScope.baseModuleDG() {
     navigationDG()
     lifeCycleDG()
     chuckDG()
+    roomDG()
     /*UI Kit*/
     androidXViewDG()
     navigationDG()

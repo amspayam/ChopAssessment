@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":core:cachemanager"))
     implementation(project(":core:repository"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:room"))
 
     baseModuleDG()
 

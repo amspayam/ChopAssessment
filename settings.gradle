@@ -6,6 +6,7 @@ include ':core:uikit'
 include ':core:repository'
 include ':core:cachemanager'
 include ':core:navigation'
+include ':core:room'
 
 /*Feature*/
 include ':main'

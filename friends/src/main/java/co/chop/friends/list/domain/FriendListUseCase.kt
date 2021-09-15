@@ -7,11 +7,16 @@ import com.combyne.repository.map
 
 class FriendListUseCase(
     private val repository: FriendListRepository
-) : AsyncSuspendUseCase<Unit, ResultModel<MutableList<FriendListDataModel>>> {
+) : AsyncSuspendUseCase<Unit, ResultModel<List<FriendModel>>> {
 
-    override suspend fun executeAsync(rq: Unit): ResultModel<MutableList<FriendListDataModel>> {
+    override suspend fun executeAsync(rq: Unit): ResultModel<List<FriendModel>> {
         return repository.getFriendList().map {
-            it
+            it.map { response ->
+                FriendModel(
+                    id = response.id ?: 0,
+                    name = response.username
+                )
+            }
         }
     }
 }

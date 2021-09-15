@@ -2,12 +2,12 @@ package co.chop.conversation.presenter
 
 import androidx.lifecycle.MutableLiveData
 import co.chop.conversation.R
-import co.chop.conversation.domain.model.ConversationDataModel
+import co.chop.conversation.domain.model.ConversationModel
 import co.chop.conversation.domain.ConversationUseCase
 import co.chop.conversation.domain.SendMessageUseCase
-import co.chop.conversation.domain.model.ConversationEnum
 import co.chop.conversation.presenter.adapter.viewholder.received.ConversationReceivedModel
 import co.chop.conversation.presenter.adapter.viewholder.sent.ConversationSentModel
+import co.chope.room.entity.conversation.ConversationTypeEnum
 import com.combyne.core.view.ViewState
 import com.combyne.repository.executeUseCase
 import com.combyne.uikit.base.viewmodel.BaseViewModel
@@ -22,7 +22,7 @@ class ConversationViewModel(
     BaseViewModel() {
 
     val conversationViewStateLiveData =
-        MutableLiveData<ViewState<List<ConversationDataModel>>>()
+        MutableLiveData<ViewState<List<ConversationModel>>>()
     val conversationItemsLiveData = MutableLiveData<MutableList<Any>>(mutableListOf())
     val sendMessageLiveData = MutableLiveData<ViewState<Boolean>>()
     private var userId: Int = 0
@@ -40,21 +40,21 @@ class ConversationViewModel(
                     prepareItemsForAdapter(it)
                     conversationViewStateLiveData.value = ViewState.ViewData(it)
                 }, {
-                    conversationViewStateLiveData.value = ViewState.ViewError(it.error, it.status)
+                    conversationViewStateLiveData.value = ViewState.ViewError(it)
                 })
         }
     }
 
-    private fun prepareItemsForAdapter(it: List<ConversationDataModel>) {
+    private fun prepareItemsForAdapter(it: List<ConversationModel>) {
         conversationItemsLiveData.value?.clear()
         it.forEach {
             when (it.type) {
-                ConversationEnum.SENT -> conversationItemsLiveData.value?.add(
+                ConversationTypeEnum.SENT -> conversationItemsLiveData.value?.add(
                     ConversationSentModel(
                         message = it.message
                     )
                 )
-                ConversationEnum.RECEIVED -> conversationItemsLiveData.value?.add(
+                ConversationTypeEnum.RECEIVED -> conversationItemsLiveData.value?.add(
                     ConversationReceivedModel(message = it.message)
                 )
             }
@@ -74,18 +74,16 @@ class ConversationViewModel(
 
         track {
             sendMessageUseCase.executeAsync(
-                ConversationDataModel(
+                ConversationModel(
                     userId = userId,
                     message = message!!,
-                    type = ConversationEnum.SENT
+                    type = ConversationTypeEnum.SENT
                 )
-            )
-                .executeUseCase({
-                    prepareItemsForAdapter(it)
-                    sendMessageLiveData.value = ViewState.ViewData(true)
-                }, {
-                    sendMessageLiveData.value = ViewState.ViewError(it.error, it.status)
-                })
+            ).executeUseCase({
+                sendMessageLiveData.value = ViewState.ViewData(true)
+            }, {
+                sendMessageLiveData.value = ViewState.ViewError(it)
+            })
         }
     }
 

@@ -1,36 +1,27 @@
 package co.chop.conversation.data
 
-import co.chop.conversation.domain.model.ConversationDataModel
 import co.chop.conversation.domain.ConversationRepository
-import co.chop.conversation.domain.model.ConversationEnum
+import co.chop.conversation.domain.model.ConversationModel
+import co.chope.room.entity.conversation.ConversationEntity
 import com.combyne.repository.ResultModel
+import com.combyne.repository.db.AppDatabase
 
-class ConversationRepositoryImpl : ConversationRepository {
+class ConversationRepositoryImpl(private val appDatabase: AppDatabase) :
+    ConversationRepository {
 
-    private val list = mutableListOf(
-        ConversationDataModel(
-            userId = 1,
-            message = "How Are You?",
-            type = ConversationEnum.SENT
-        ), ConversationDataModel(
-            userId = 1,
-            message = "Good",
-            type = ConversationEnum.RECEIVED
-        ), ConversationDataModel(
-            userId = 2,
-            message = "Hello",
-            type = ConversationEnum.SENT
+    override suspend fun getConversation(idUser: Int) =
+        ResultModel.Success(appDatabase.conversationDao().getAll(idUser))
+
+    override suspend fun addConversation(conversation: ConversationModel): ResultModel<Boolean> {
+        appDatabase.conversationDao().insert(
+            ConversationEntity(
+                id = null,
+                userId = conversation.userId,
+                message = conversation.message,
+                type = conversation.type
+            )
         )
-    )
-
-    override suspend fun getConversation(userId: Int): ResultModel<List<ConversationDataModel>> {
-        val filteredList = list.filter { it.userId == userId }
-        return ResultModel.Success(filteredList)
+        return ResultModel.Success(true)
     }
 
-    override suspend fun sendMessage(message: ConversationDataModel): ResultModel<List<ConversationDataModel>> {
-        list.add(message)
-        val filteredList = list.filter { it.userId == message.userId }
-        return ResultModel.Success(filteredList)
-    }
 }

@@ -19,6 +19,7 @@ class CombyneLibraryPlugin : Plugin<Project> {
         plugins.run {
             apply("com.android.library")
             apply("kotlin-android")
+            apply("kotlin-kapt")
             apply("com.github.ben-manes.versions")
             apply("com.apollographql.apollo")
             apply("androidx.navigation.safeargs")

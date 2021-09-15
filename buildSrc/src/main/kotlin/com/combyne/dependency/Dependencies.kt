@@ -134,6 +134,10 @@ object Versions {
     const val mockitokotlin2 = "2.2.0"
     //</editor-fold>
 
+    // <editor-fold desc="Room">
+    const val room = "2.3.0"
+    //</editor-fold>
+
 }
 
 object Libraries {
@@ -303,6 +307,12 @@ object Libraries {
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
     const val mockitokotlin2 =
         "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitokotlin2}"
+    // </editor-fold>
+
+    // <editor-fold desc="Room">
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
     // </editor-fold>
 
 }

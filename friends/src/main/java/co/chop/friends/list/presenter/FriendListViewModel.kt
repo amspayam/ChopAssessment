@@ -1,7 +1,7 @@
 package co.chop.friends.list.presenter
 
 import androidx.lifecycle.MutableLiveData
-import co.chop.friends.list.domain.FriendListDataModel
+import co.chop.friends.list.domain.FriendModel
 import co.chop.friends.list.domain.FriendListUseCase
 import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListModel
 import com.combyne.core.view.ViewState
@@ -11,14 +11,14 @@ import com.combyne.uikit.extension.mutablelivedata.notifyObserver
 
 class FriendListViewModel(private val friendListUseCase: FriendListUseCase) : BaseViewModel() {
 
-    val friendListViewStateLiveData = MutableLiveData<ViewState<MutableList<FriendListDataModel>>>()
+    val friendListViewStateLiveData = MutableLiveData<ViewState<List<FriendModel>>>()
     val friendListItemsLiveData = MutableLiveData<MutableList<Any>>(mutableListOf())
 
     init {
         getFriends()
     }
 
-    private fun getFriends() {
+    fun getFriends() {
         friendListViewStateLiveData.value = ViewState.ViewLoading
         track {
             friendListUseCase.executeAsync(Unit)
@@ -26,18 +26,18 @@ class FriendListViewModel(private val friendListUseCase: FriendListUseCase) : Ba
                     prepareItemsForAdapter(it)
                     friendListViewStateLiveData.value = ViewState.ViewData(it)
                 }, {
-                    friendListViewStateLiveData.value = ViewState.ViewError(it.error, it.status)
+                    friendListViewStateLiveData.value = ViewState.ViewError(it)
                 })
         }
     }
 
-    private fun prepareItemsForAdapter(it: MutableList<FriendListDataModel>) {
+    private fun prepareItemsForAdapter(it: List<FriendModel>) {
         friendListItemsLiveData.value?.clear()
         friendListItemsLiveData.value?.addAll(it.map {
             FriendListModel(
                 id = it.id,
                 name = it.name,
-                message = it.lastMessage
+                message = ""
             )
         })
         friendListItemsLiveData.notifyObserver()

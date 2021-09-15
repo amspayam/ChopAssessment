@@ -67,6 +67,13 @@ class FriendListFragment : BaseFragment<FriendListViewModel>() {
         // </editor-fold>
     }
 
+    override fun setupListener() {
+        super.setupListener()
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getFriends()
+        }
+    }
+
     private fun initialRecyclerview() {
         binding.friendsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

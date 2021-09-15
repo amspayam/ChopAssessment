@@ -5,5 +5,5 @@ import co.chop.friends.list.domain.FriendListRepository
 import org.koin.dsl.module
 
 val friendListDataModule = module {
-    factory<FriendListRepository> { FriendListRepositoryImpl() }
+    factory<FriendListRepository> { FriendListRepositoryImpl(get()) }
 }
