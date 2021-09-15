@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import co.chope.room.entity.conversation.ConversationEntity
-import co.chope.room.entity.conversation.ConversationTypeEnum
 
 @Dao
 interface ConversationDAO {

@@ -13,6 +13,8 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:room"))
 
+    implementation(project(":friends"))
+
     baseModuleDG()
 
 }

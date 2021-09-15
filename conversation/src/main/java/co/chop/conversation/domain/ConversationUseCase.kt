@@ -12,13 +12,13 @@ class ConversationUseCase(
 
     override suspend fun executeAsync(rq: Int): ResultModel<List<ConversationModel>> {
         return repository.getConversation(idUser = rq).map {
-            it.map { response ->
+            it?.map { response ->
                 ConversationModel(
                     userId = response.userId,
                     message = response.message,
                     type = response.type
                 )
-            }
+            } ?: listOf()
         }
     }
 }

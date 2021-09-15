@@ -1,5 +1,6 @@
 package com.combyne.repository
 
+
 sealed class ResultModel<out V> {
 
     data class Success<V>(val value: V) : ResultModel<V>()
