@@ -21,8 +21,8 @@ object BuildConfigField {
         }
 
         object Value {
-            const val dev = "https://tv-show-manager.combyne.com/graphql"
-            const val production = "https://tv-show-manager.combyne.com/graphql"
+            const val dev = ""
+            const val production = ""
         }
     }
 }

@@ -7,7 +7,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import co.chope.room.entity.friend.FriendDAO
 import co.chope.room.entity.friend.FriendEntity
 import com.combyne.core.extension.GsonUtils.toListByGson
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import my.com.m1.repository.R
 
 class DatabaseBuilder {

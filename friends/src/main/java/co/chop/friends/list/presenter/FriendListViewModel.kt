@@ -1,8 +1,8 @@
 package co.chop.friends.list.presenter
 
 import androidx.lifecycle.MutableLiveData
-import co.chop.friends.list.domain.FriendModel
 import co.chop.friends.list.domain.FriendListUseCase
+import co.chop.friends.list.domain.FriendModel
 import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListModel
 import com.combyne.core.view.ViewState
 import com.combyne.repository.executeUseCase

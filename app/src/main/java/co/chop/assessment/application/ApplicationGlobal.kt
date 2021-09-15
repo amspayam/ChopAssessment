@@ -9,8 +9,8 @@ import com.combyne.repository.di.RepositoryInjector
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import java.util.*
 import org.koin.core.logger.Level
+import java.util.*
 
 class ApplicationGlobal : MultiDexApplication() {
 

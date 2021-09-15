@@ -2,9 +2,9 @@ package co.chop.conversation.presenter
 
 import androidx.lifecycle.MutableLiveData
 import co.chop.conversation.R
-import co.chop.conversation.domain.model.ConversationModel
 import co.chop.conversation.domain.ConversationUseCase
 import co.chop.conversation.domain.SendMessageUseCase
+import co.chop.conversation.domain.model.ConversationModel
 import co.chop.conversation.presenter.adapter.viewholder.received.ConversationReceivedModel
 import co.chop.conversation.presenter.adapter.viewholder.sent.ConversationSentModel
 import co.chope.room.entity.conversation.ConversationTypeEnum

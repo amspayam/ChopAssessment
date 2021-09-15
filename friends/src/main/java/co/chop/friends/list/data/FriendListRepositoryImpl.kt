@@ -4,7 +4,8 @@ import co.chop.friends.list.domain.FriendListRepository
 import co.chope.room.entity.friend.FriendEntity
 import com.combyne.repository.ResultModel
 import com.combyne.repository.db.AppDatabase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FriendListRepositoryImpl(private val dataBaseManager: AppDatabase) :
     FriendListRepository {
