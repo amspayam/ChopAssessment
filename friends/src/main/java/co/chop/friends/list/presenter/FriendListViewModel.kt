@@ -1,19 +1,22 @@
 package co.chop.friends.list.presenter
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import co.chop.assessment.base.view.ViewState
 import co.chop.assessment.repository.executeUseCase
 import co.chop.friends.list.domain.FriendListUseCase
 import co.chop.friends.list.domain.FriendModel
-import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListModel
 import com.combyne.uikit.base.viewmodel.BaseViewModel
 import com.combyne.uikit.extension.mutablelivedata.notifyObserver
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class FriendListViewModel(
     private val friendListUseCase: FriendListUseCase
 ) : BaseViewModel() {
 
-    val friendListViewStateLiveData = MutableLiveData<ViewState<List<FriendModel>>>()
+    val friendListViewStateLiveData = MutableLiveData<ViewState<Flow<List<FriendModel>>>>()
     val friendListItemsLiveData = MutableLiveData<MutableList<Any>>(mutableListOf())
 
     init {
@@ -33,16 +36,14 @@ class FriendListViewModel(
         }
     }
 
-    private fun prepareItemsForAdapter(it: List<FriendModel>) {
-        friendListItemsLiveData.value?.clear()
-        friendListItemsLiveData.value?.addAll(it.map {
-            FriendListModel(
-                id = it.id,
-                name = it.name,
-                message = it.lastMessage
-            )
-        })
-        friendListItemsLiveData.notifyObserver()
+    private fun prepareItemsForAdapter(items: Flow<List<FriendModel>>) {
+        viewModelScope.launch {
+            items.collect { item ->
+                friendListItemsLiveData.value?.clear()
+                friendListItemsLiveData.value?.addAll(item)
+                friendListItemsLiveData.notifyObserver()
+            }
+        }
     }
 
 }

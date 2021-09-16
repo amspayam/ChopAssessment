@@ -7,12 +7,20 @@ import co.chop.assessment.room.entity.conversation.ConversationTypeEnum
 import co.chop.assessment.room.entity.friend.FriendUpdate
 import co.chop.conversation.domain.ConversationRepository
 import co.chop.conversation.domain.model.ConversationModel
+import com.apollographql.apollo.exception.ApolloException
+import kotlinx.coroutines.flow.Flow
 
 class ConversationRepositoryImpl(private val appDatabase: AppDatabase) :
     ConversationRepository {
 
-    override suspend fun getConversation(idUser: Int): ResultModel<List<ConversationEntity>?> {
-        return ResultModel.Success(appDatabase.conversationDao().getAll(idUser))
+    override suspend fun getConversation(idUser: Int): ResultModel<Flow<List<ConversationEntity>?>> {
+        return try {
+            ResultModel.Success(appDatabase.conversationDao().getAll(idUser))
+        } catch (exception: ApolloException) {
+            ResultModel.Error(
+                exception.localizedMessage ?: "Error"
+            )
+        }
     }
 
     override suspend fun addConversation(conversation: ConversationModel): ResultModel<Int> {

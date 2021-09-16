@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import co.chop.assessment.room.entity.conversation.ConversationEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ConversationDAO {
@@ -13,6 +14,6 @@ interface ConversationDAO {
     suspend fun insertConversations(conversation: List<ConversationEntity>)
 
     @Query("SELECT * FROM conversations WHERE userId =:idUser")
-    suspend fun getAll(idUser: Int): List<ConversationEntity>
+    fun getAll(idUser: Int): Flow<List<ConversationEntity>>
 
 }

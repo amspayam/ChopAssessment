@@ -3,7 +3,7 @@ package co.chop.friends.list.presenter.adapter
 import android.view.ViewGroup
 import co.chop.friends.R
 import co.chop.friends.databinding.ItemFriendListBinding
-import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListModel
+import co.chop.friends.list.domain.FriendModel
 import co.chop.friends.list.presenter.adapter.viewholder.item.FriendListViewHolder
 import com.combyne.uikit.base.adapter.BaseRecyclerAdapter
 import com.combyne.uikit.base.adapter.BaseViewHolder
@@ -32,7 +32,7 @@ class FriendListAdapter(val onclickListener: (friendId: Int, friendName: String)
 
     override fun getItemViewType(position: Int): Int {
         return when (mItems[position]) {
-            is FriendListModel -> {
+            is FriendModel -> {
                 // Item
                 R.layout.item_friend_list
             }
