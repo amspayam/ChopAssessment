@@ -8,9 +8,7 @@ import co.chop.assessment.base.extension.GsonUtils.toListByGson
 import co.chop.assessment.repository.R
 import co.chop.assessment.room.dao.FriendDAO
 import co.chop.assessment.room.entity.friend.FriendEntity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class DatabaseBuilder {
 
@@ -21,7 +19,7 @@ class DatabaseBuilder {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->
-                CoroutineScope(Dispatchers.Main).launch {
+                GlobalScope.launch(Dispatchers.IO) {
                     val friendDao = database.friendDao()
                     prePopulateDatabase(friendDao)
                 }
@@ -29,11 +27,14 @@ class DatabaseBuilder {
         }
 
         private suspend fun prePopulateDatabase(friendDao: FriendDAO) {
-            val jsonString = context.resources.openRawResource(R.raw.friends).bufferedReader().use {
-                it.readText()
+            withContext(Dispatchers.IO) {
+                val jsonString =
+                    context.resources.openRawResource(R.raw.friends).bufferedReader().use {
+                        it.readText()
+                    }
+                val list: List<FriendEntity> = jsonString.toListByGson()
+                friendDao.insertAllFriends(list)
             }
-            val list: List<FriendEntity> = jsonString.toListByGson()
-            friendDao.insertAllFriends(list)
         }
     }
 

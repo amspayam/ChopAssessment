@@ -16,7 +16,7 @@ class ConversationRepositoryImpl(private val appDatabase: AppDatabase) :
     override suspend fun getConversation(idUser: Int): ResultModel<Flow<List<ConversationEntity>?>> {
         return try {
             ResultModel.Success(appDatabase.conversationDao().getAll(idUser))
-        } catch (exception: ApolloException) {
+        } catch (exception: java.lang.Exception) {
             ResultModel.Error(
                 exception.localizedMessage ?: "Error"
             )
@@ -39,16 +39,20 @@ class ConversationRepositoryImpl(private val appDatabase: AppDatabase) :
                 type = ConversationTypeEnum.RECEIVED
             )
         )
-        appDatabase.conversationDao().insertConversations(conversation = conversations)
+        return try {
+            appDatabase.conversationDao().insertConversations(conversation = conversations)
 
-        /*Add last message to friend*/
-        appDatabase.friendDao().updateFriend(
-            FriendUpdate(
-                id = conversation.userId,
-                lastMessage = conversation.message
+            /*Add last message to friend*/
+            appDatabase.friendDao().updateFriend(
+                FriendUpdate(
+                    id = conversation.userId,
+                    lastMessage = conversation.message
+                )
             )
-        )
-        return ResultModel.Success(conversation.userId)
+            ResultModel.Success(conversation.userId)
+        } catch (exception: Exception) {
+            ResultModel.Error(exception.localizedMessage ?: "")
+        }
     }
 
 }
